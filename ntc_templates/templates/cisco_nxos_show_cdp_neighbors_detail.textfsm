@@ -1,15 +1,15 @@
-Value Required DEST_HOST (.*)
+Value Required DESTINATION_HOST (.*)
 Value SYSNAME (.*)
-Value MGMT_IP (.*)
+Value MANAGEMENT_IP (.*)
 Value PLATFORM (.*)
 Value REMOTE_PORT (.*)
 Value LOCAL_PORT (.*)
-Value VERSION (.*)
+Value SOFTWARE_VERSION (.*)
 Value INTERFACE_IP (.*)
 Value CAPABILITIES (.*[^\s])
 
 Start
-  ^Device ID:${DEST_HOST}
+  ^Device ID:${DESTINATION_HOST}
   ^System Name: ${SYSNAME}
   ^Interface address\(es\): -> GetInterfaceIP
   ^Mgmt address\(es\): -> GetIP
@@ -19,10 +19,10 @@ Start
   ^----- -> Record
 
 GetIP
-  ^.*IP.+Address: ${MGMT_IP} -> Start
+  ^.*IP.+Address: ${MANAGEMENT_IP} -> Start
 
 GetInterfaceIP
   ^.*IP.+Address: ${INTERFACE_IP} -> Start
 
 GetVersion
-  ^${VERSION} -> Start
+  ^${SOFTWARE_VERSION} -> Start
